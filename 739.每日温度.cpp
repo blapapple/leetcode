@@ -12,18 +12,15 @@ class Solution {
         stack<int> stk;
         vector<int> ret = vector<int>(temperatures.size(), 0);
         stk.push(0);
-        for (int i = 0; i < temperatures.size(); i++) {
-            if (temperatures[i] <= stk.top()) {
-                stk.push(i);
-            } else {
-                int day = 0;
-                while (temperatures[i] > stk.top()) {
-                    day++;
+        for (int i = 1; i < temperatures.size(); i++) {
+            if (temperatures[i] > temperatures[stk.top()]) {
+                while (!stk.empty() &&
+                       temperatures[i] > temperatures[stk.top()]) {
+                    ret[stk.top()] = i - stk.top();
                     stk.pop();
                 }
-                stk.push(i);
-                ret[i] = day;
             }
+            stk.push(i);
         }
         return ret;
     }
