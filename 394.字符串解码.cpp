@@ -12,26 +12,27 @@ class Solution {
         string ret;
         stack<string> strStk;
         stack<int> intStk;
+        string str;
         int multi = 0;
         for (int i = 0; i < s.size(); i++) {
             if (s[i] >= '0' && s[i] <= '9') {
                 multi = multi * 10 + s[i] - '0';
             } else if (s[i] == '[') {
                 intStk.push(multi);
-                strStk.push(ret);
+                strStk.push(str);
                 multi = 0;
-                ret.clear();
+                str.clear();
             } else if (s[i] == ']') {
                 string temp = "";
                 int curmul = intStk.top();
                 intStk.pop();
                 while (curmul--) {
-                    temp.append(ret);
+                    temp.append(str);
                 }
                 ret = strStk.top() + temp;
                 strStk.pop();
             } else {
-                ret.push_back(s[i]);
+                str.push_back(s[i]);
             }
         }
         return ret;

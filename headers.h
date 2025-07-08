@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <iostream>
 #include <map>
+#include <memory>
 #include <queue>
 #include <set>
 #include <stack>
@@ -20,4 +21,4 @@
 #include "bstree.h"
 #include "listnode.h"
 using namespace std;
-#endif  // !_HEADERS_H_
+#endif // !_HEADERS_H_

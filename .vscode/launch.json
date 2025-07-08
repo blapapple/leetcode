@@ -16,7 +16,14 @@
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
-            "preLaunchTask": "C/C++"
+            "preLaunchTask": "C/C++",
+            "setupCommands": [
+                {
+                    "description": "启用 STL 美化打印",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
         },
     ]
 }
