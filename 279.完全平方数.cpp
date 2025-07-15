@@ -1,5 +1,10 @@
-
+/*
+ * @lc app=leetcode.cn id=279 lang=cpp
+ *
+ * [279] 完全平方数
+ */
 #include "headers.h"
+// @lc code=start
 class Solution {
     static int findPow(int p, vector<int> &nums) {
         for (int i = nums.size() - 1; i >= 0; i--) {
@@ -20,26 +25,27 @@ class Solution {
         auto dp = [&](this auto &&dp, int left) -> int {
             int a = findPow(left, nums);
             int minRet = INT_MAX;
-            // for (int i = a; i >= 0; i--) {
-            if (left == nums[a]) {
-                return 1;
+            for (int i = a; i >= 0; i--) {
+                if (left == nums[i]) {
+                    return 1;
+                }
+                int temp;
+                if (map.find(left - nums[i]) != map.end()) {
+                    temp = map[left - nums[i]] + 1;
+                } else {
+                    temp = dp(left - nums[i]);
+                    map[left - nums[i]] = temp;
+                    temp += 1;
+                }
+                minRet = min(minRet, temp);
             }
-            int temp;
-            if (map.find(left - nums[a]) != map.end()) {
-                temp = map[left - nums[a]] + 1;
-            } else {
-                temp = dp(left - nums[a]);
-                map[left - nums[a]] = temp;
-                temp += 1;
-            }
-            minRet = min(minRet, temp);
-            // }
 
             return minRet;
         };
         return dp(n);
     }
 };
+// @lc code=end
 
 int main() {
     Solution s;
